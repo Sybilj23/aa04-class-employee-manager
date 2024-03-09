@@ -8,9 +8,9 @@ class Employee {
       this.manager.addEmployee(this);
     }
   }
-  calculateBonus(multiplier){
-   let bonus = (this.salary) * multiplier
-   return bonus;
+  calculateBonus(multiplier) {
+    let bonus = this.salary * multiplier
+    return bonus;
   }
 }
 // const raph = new Employee('Raphael', 90000, 'Ninja');

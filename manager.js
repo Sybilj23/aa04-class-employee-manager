@@ -1,28 +1,33 @@
 const Employee = require("./employee");
+
 class Manager extends Employee {
   constructor(name, salary, title, manager = null, employees = []) {
-    super(name, salary, title, (manager = null));
+    super(name, salary, title, manager);
     this.employees = employees;
   }
+
   addEmployee(employee) {
     this.employees.push(employee);
   }
+
   _totalSubSalary() {
     let sum = 0;
-    for (let employee of this.employees) {
+    for (const employee of this.employees) {
       if (employee instanceof Manager) {
         sum += employee.salary + employee._totalSubSalary();
-      }else{
-            sum += employee.salary
+      } else {
+        sum += employee.salary
       }
     }
     return sum;
   }
-  calculateBonus(multiplier){
-      const totalSalary = this.salary + this._totalSubSalary();
-  return  totalSalary * multiplier;
+
+  calculateBonus(multiplier) {
+    const totalSalary = this.salary + this._totalSubSalary();
+    return totalSalary * multiplier;
   }
 }
+
 const splinter = new Manager('Splinter', 100000, 'Sensei');
 const leo = new Manager('Leonardo', 90000, 'Ninja', splinter);
 const raph = new Manager('Raphael', 90000, 'Ninja', leo);
